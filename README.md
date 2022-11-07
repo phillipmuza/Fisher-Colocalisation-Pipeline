@@ -33,6 +33,5 @@ EXAMPLE: Animal_1 had 2 images of the CA1 and Animal_2 had 1 image, their direct
   2. In R, run the following scripts:
       - load_dataframes.R - this will combine all the tables produced from 1. to make a "merged_df.csv" so its format ready for data analysis
           - note: this only runs for one multichannel image, see below to run it recursively
-      - load_dataframes_recursive.R - this will run load_dataframes.R recursively and uniquely name each "merged_df.csv"
-      -analysis_script.R - an example for how to wrangle the data together to generate a final dataframe ready for statistical analysis 
+      - load_dataframes_recursive.R - this will run load_dataframes.R recursively and uniquely name each "merged_df.csv"       - analysis_script.R - an example for how to wrangle the data together to generate a final dataframe ready for statistical analysis 
       
