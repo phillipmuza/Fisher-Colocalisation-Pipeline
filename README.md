@@ -1,5 +1,5 @@
 # Fisher-Colocalisation-Pipeline
-The page outlines a pipeline to run object-based colocalisation using ImageJ/Fiji macros, and an example template to run data analysis in R
+The page outlines a pipeline to run object-based colocalisation using ImageJ/Fiji macros, and an example template to run data analysis in R.
 
 This pipeline is used quantify cell density, cell volume, and signal coverage using object-based colocalisation.
 
