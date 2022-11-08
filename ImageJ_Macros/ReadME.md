@@ -1,4 +1,4 @@
-#ImageJ Macros
+# ImageJ Macros
 
 This folder contains imageJ macros needed to run colocalisation analysis.
 
