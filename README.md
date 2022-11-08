@@ -3,7 +3,7 @@ The page outlines a pipeline to run object-based colocalisation using ImageJ/Fij
 
 This pipeline is used quantify cell density, cell volume, and signal coverage using object-based colocalisation.
 
-This pipeline utilises the same workflow described in the semi-automated brain slice cell segmentation (LINK) to segment cells and produce a table describing volumes of segmented objects (or cells) for a given label, and an ImageJ/Fiji macro which uses the AND Boolean operator to quantify segmented objects which are colocalised. 
+This pipeline utilises the same workflow described in the semi-automated [brain slice cell segmentation](https://github.com/phillipmuza/Fisher-ABSOC-Cell-Counting-Pipeline/tree/main/cell_segmentation) to segment cells and produce a table describing volumes of segmented objects (or cells) for a given label, and an ImageJ/Fiji macro which uses the AND Boolean operator to quantify segmented objects which are colocalised. 
 
 Custom-made R scripts were designed to quantify the cell density, cell volume, and signal coverage for given cell signals and colocalised cell signals.
 
@@ -24,13 +24,13 @@ EXAMPLE: Animal_1 had 2 images of the CA1 and Animal_2 had 1 image, their direct
 **NOTE: within each subdirectory in Animal_1 and Animal_2 (even if there is no subdirectory) all the multichannel images are named the same - this allows the experimenter to run scripts recursively without having to worry about unique filenames.**
 
 ## Run the pipeline in the following order:
-  1.  In imageJ/Fiji, run the following macros:
+  1.  Using ImageJ/Fiji, run the following [macros](ImageJ_Macros/):
       - split_colours.ijm - this seperates your multichannel image into individual channels
       - signal_processing.ijm - this processes your individuals channels
       - coloc_processing.ijm - this run object-based colocalisation on 2 single channel segmented binary images
       - export_pixels.ijm - this exports all non-zero pixels from a single channel image 
          - this is used to quantify your ROI volume
-  2. In R, run the following scripts:
+  2. In R, run the following [scripts](R_scripts/):
       - load_dataframes.R - this will combine all the tables produced from 1. to make a "merged_df.csv" so its format ready for data analysis
           - note: this only runs for one multichannel image, see below to run it recursively
       - load_dataframes_recursive.R - this will run load_dataframes.R recursively and uniquely name each "merged_df.csv"
