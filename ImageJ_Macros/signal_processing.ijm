@@ -98,7 +98,7 @@
 			run("Auto Threshold", "method=Triangle ignore_black ignore_white white stack");
 			saveAs("Tiff", dir +"s100b_mask");
 //This runs the BoneJ particle analyzers - change min & max of the size of objects you want to analyse
-	//Here parameters are set for mouse GFAP+ cell bodies -/+ 5% - same parameters as GFAP as we expect GFAP signal to capture a large volume of the cells
+	//Here parameters are set for mouse S100B+ cell bodies -/+ 5% - same parameters as GFAP as we expect GFAP signal to capture a large volume of the cells
 			run("Particle Analyser", "min=10 max=1750 surface_resampling=2 show_particle surface=Gradient split=0.000 volume_resampling=2 ");
 			selectWindow("s100b_mask_parts");
 			saveAs("Tiff", dir +"s100b_mask_parts");
