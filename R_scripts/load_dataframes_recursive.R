@@ -3,10 +3,10 @@
 ### Date: 26.10.22
 
 #Path to the load_dataframes.R script
-load_dataframes <- "S:/IoN_Fisher_Lab/Phillip/Immunohistochemistry/Colocalisation_scripts/load_dataframes.R"
+load_dataframes <- "C:/Users/pmuza/Documents/Fisher-Colocalisation-Pipeline-main/Fisher-Colocalisation-Pipeline-main/R_scripts/load_dataframes.R"
 
 #Enter the path to your directory with the folders with your slice data
-parent.folder <- "R:\\s100b_gfap\\images\\GCL"
+parent.folder <- "S:\\IoN_Fisher_Lab\\Phillip\\Immunohistochemistry\\s100b_gfap\\coloc_analysis"
 
 #This line assigns all the folders within your parent directory to a vector
 sub.folders <- list.dirs(parent.folder, recursive = TRUE, full.names = TRUE)
