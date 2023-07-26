@@ -3,10 +3,10 @@
 ### Date: 26.10.22
 
 #Path to the load_dataframes.R script
-load_dataframes <- "C:/Users/pmuza/Documents/Fisher-Colocalisation-Pipeline-main/Fisher-Colocalisation-Pipeline-main/R_scripts/load_dataframes.R"
+load_dataframes <- "C:\\Users\\phill\\Documents\\Fisher-Colocalisation-Pipeline\\R_scripts\\load_dataframes.R"
 
 #Enter the path to your directory with the folders with your slice data
-parent.folder <- "S:\\IoN_Fisher_Lab\\Phillip\\Immunohistochemistry\\s100b_gfap\\coloc_analysis"
+parent.folder <- "C:\\Users\\phill\\Documents\\CA1"
 
 #This line assigns all the folders within your parent directory to a vector
 sub.folders <- list.dirs(parent.folder, recursive = TRUE, full.names = TRUE)
@@ -18,11 +18,9 @@ r_script <- file.path(load_dataframes)
 for (i in sub.folders){
   setwd(i)
   print(i)
-  if (file.exists(c("gfap_objects.csv", "s100b_objects.csv", "coloc_objects.csv"))){
-    source(r_script)
-  } else {
-      print("no files found, moving to next directory")
-    }
+  ifelse(file.exists(c("ng2_objects.csv", "s100b_objects.csv", "coloc_objects.csv")),
+         source(r_script),
+         print("no files found, moving to the next directory"))
 }
 
 #This loop will rename those merged files into something unique to that particular folder
