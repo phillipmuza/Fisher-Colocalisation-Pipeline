@@ -7,14 +7,15 @@
 
 #Load packages
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(tidyverse, plyr)
+pacman::p_load(tidyverse, crayon)
 
 #Function to read csv, removes the X column, rename columns, and names of label
 format_table <- function(table, label){ 
-df <- read.csv(table, fileEncoding="Latin1")
-subset_df <- subset(df, select = -c(X))
-colnames(subset_df) <- c("Label","Object","Volume(um3)","x-coord","y-coord","z-coord")
-levels(subset_df$Label) <- label
+    df <- read.csv(table, fileEncoding="Latin1")
+    subset_df <- subset(df, select = -c(X))
+    colnames(subset_df) <- c("Label","Object","Volume(um3)","x-coord","y-coord","z-coord")
+    levels(subset_df$Label) <- label
+    subset_df$Label <- label
 return(subset_df)
 }
 
@@ -33,18 +34,18 @@ euclidean_distance <- function(df1, df2){ #df1 is your reference dataframe
 }
 
 #Read your dataframes
-ng2_df <- format_table("ng2_objects.csv", "NG2")
-s100b_df <- format_table("s100b_objects.csv", "S100B")
+test_cellType_df <- format_table(name_of_test_image, test_cell_type)
+reference_cellType_df<- format_table(name_of_reference_image, reference_cell_type)
 coloc_objects <- format_table("coloc_objects.csv", "coloc")
 
 #S100B objects with a euclidean distance <15 to colocalised objects (coloc) are considered to be S100B+NG2+
   #S100B objects are considered the main cell type, as they should be more numerous than NG2+ cells 
     #The euclidean distances should be calculated from the cell type you expect to be more abundant 
-s100b_df <- euclidean_distance(s100b_df, coloc_objects)
-s100b_df <- s100b_df %>% mutate(NG2_colocalisation = 
-                 case_when(euclidean_distance >= 15 ~ "NG2-",
-                           euclidean_distance < 15 ~ "NG2+"))
+reference_cellType_df <- euclidean_distance(reference_cellType_df, coloc_objects)
+reference_cellType_df <- reference_cellType_df %>% mutate(colocalisation = 
+                 case_when(euclidean_distance >= 15 ~ "-ve",
+                           euclidean_distance < 15 ~ "+ve"))
 
 #Bind the dataframes together by rows 
-merged <- plyr::rbind.fill(ng2_df, s100b_df)
+merged <- plyr::rbind.fill(reference_cellType_df, test_cellType_df)
 write.csv(merged, file = "merged_df.csv")
